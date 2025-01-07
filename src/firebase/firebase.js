@@ -3,20 +3,21 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getFirestore } from "firebase/firestore";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: REACT_APP_API_KEY,
-    authDomain: REACT_APP_AUTH_DOMAIN,
-    projectId: REACT_APP_PROJECT_ID,
-    storageBucket: REACT_APP_STORAGE_BUCKET,
-    messagingSenderId: REACT_APP_MESSSAGING_SENDER_ID,
-    appId: REACT_APP_APP_ID,
-}
+    apiKey: "AIzaSyBslerUnbVi1KEUyjT8YP6qgR0Lcm-gXDU",
+    authDomain: "real-time-chat-2fffe.firebaseapp.com",
+    projectId: "real-time-chat-2fffe",
+    storageBucket: "real-time-chat-2fffe.firebasestorage.app",
+    messagingSenderId: "90272981860",
+    appId: "1:90272981860:web:c47e4a785e00bdef841071",
+    measurementId: "G-ZZHTLZB3G7"
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const db =  getFirestore(app)
+export const db = getFirestore(app)

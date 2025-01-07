@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import { auth, db } from "../firebase/firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const SendMessage = () => {
+    const [message, setMessage] = useState("");
+    
+    const sendMessage = async (event) => {
+        event.preventDefault();
+        if (message.trim() === "") {
+            alert("Enter Valid Message");
+            return;
+        }
+        const { uid, displayName, photoURL } = auth.currentUser;
+        await addDoc(collection(db, "messages"), {
+            text: message,
+            name: displayName,
+            avatar: photoURL,
+            createAt: serverTimestamp(),
+            uid,
+        })
+    }
+
     return (
-        <form className="send-message">
+        <form onSubmit={(event) => sendMessage(event)} className="send-message">
             <label htmlFor="messageInput" hidden>
                 Enter Message
             </label>
@@ -12,8 +32,11 @@ const SendMessage = () => {
                 type="text"
                 className="form-input__input"
                 placeholder="type message..."
+                onChange={(e) => setMessage(e.target.value)}
             />
             <button type="submit">Send</button>
         </form>
-    )
-}
+    );
+};
+
+export default SendMessage;
